@@ -3,11 +3,11 @@
     <h1 class="text-lg font-bold">
       {{ episode.episode }} - {{ episode.name }}
     </h1>
-    <h2 class="text-md text-gray-600">
-      Locations
+    <h2 class="text-sm text-gray-600 mt-2">
+      Locations ({{ episode.locations.length }})
     </h2>
-    <template v-for="(location, index) in locations">
-      <div :key="index">
+    <template v-for="(location, index) in episode.locations">
+      <div :key="index" class="text-sm">
         {{ location }}
       </div>
     </template>
@@ -20,19 +20,6 @@ export default {
     episode: {
       type: Object,
       required: true
-    }
-  },
-  computed: {
-    locations () {
-      const locations = this.episode.characters.map(async (character) => {
-        const characterFetched = await this.$axios.get(character)
-        console.log('characterFetched', characterFetched.data.location.name)
-        return characterFetched.data.location.name
-      })
-
-      console.log('locations', locations)
-
-      return locations
     }
   }
 }

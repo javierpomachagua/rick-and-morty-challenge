@@ -14,6 +14,10 @@ export default ({ app, $axios }, inject) => {
       []
     )
   })
+
+  inject('onlyUnique', (value, index, self) => {
+    return self.indexOf(value) === index
+  })
 }
 
 function range (start, end) {
